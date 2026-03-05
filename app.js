@@ -5,6 +5,7 @@ const OPENWEATHER_API_KEY = "efb9ccd5202df0001bfdf49fee997f2c";
 const form = document.getElementById("searchForm");
 const input = document.getElementById("cityInput");
 const statusEl = document.getElementById("status");
+const appHomeEl = document.getElementById("appHome");
 const popularCityButtons = document.querySelectorAll(".popular-btn");
 const popularSectionEl = document.querySelector(".popular");
 
@@ -76,6 +77,37 @@ function showComment(show) {
 function showPopular(show) {
   if (!popularSectionEl) return;
   popularSectionEl.classList.toggle("hidden", !show);
+}
+
+function resetToStartPage() {
+  latestRequestId += 1;
+  setStatus("");
+  input.value = "";
+  cityTimeOffsetSeconds = null;
+  updateCityTimeDisplay();
+
+  if (cityTimeIntervalId) {
+    clearInterval(cityTimeIntervalId);
+    cityTimeIntervalId = null;
+  }
+
+  stopCloudTimelapse();
+  if (weatherMap) {
+    weatherMap.remove();
+    weatherMap = null;
+    cloudLayer = null;
+  }
+
+  timelapseLabelEl.textContent = "";
+  timelapseToggleEl.textContent = "Pause";
+  timelapseToggleEl.disabled = false;
+  forecastContainerEl.replaceChildren();
+  showResult(false);
+  showMap(false);
+  showForecast(false);
+  showComment(false);
+  showPopular(true);
+  input.focus();
 }
 
 function formatTemp(t) {
@@ -646,6 +678,14 @@ timelapseToggleEl.addEventListener("click", () => {
   }
 
   startCloudTimelapse();
+});
+
+appHomeEl?.addEventListener("click", resetToStartPage);
+appHomeEl?.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    resetToStartPage();
+  }
 });
 
 setupPopularButtonsWithTimes();
