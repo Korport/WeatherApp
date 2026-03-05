@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starter Weather App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Weather</h1>
+
+      <form id="searchForm" class="search">
+        <input
+          id="cityInput"
+          type="text"
+          placeholder="Enter a city (e.g., Seattle)"
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+      <div class="popular" aria-label="Popular locations">
+        <span class="popular-label">Popular:</span>
+        <button type="button" class="popular-btn city-nyc" data-city="New York">New York</button>
+        <button type="button" class="popular-btn city-la" data-city="Los Angeles">Los Angeles</button>
+        <button type="button" class="popular-btn city-chicago" data-city="Chicago">Chicago</button>
+        <button type="button" class="popular-btn city-miami" data-city="Miami">Miami</button>
+        <button type="button" class="popular-btn city-seattle" data-city="Seattle">Seattle</button>
+        <button type="button" class="popular-btn city-madrid" data-city="Madrid">Madrid</button>
+        <button type="button" class="popular-btn city-sydney" data-city="Sydney">Sydney</button>
+        <button type="button" class="popular-btn city-london" data-city="London">London</button>
+        <button type="button" class="popular-btn city-tokyo" data-city="Tokyo">Tokyo</button>
+      </div>
+
+      <p id="status" class="status" aria-live="polite"></p>
+
+      <section id="result" class="card hidden" aria-label="Weather result">
+        <div class="card-head">
+          <h2 id="cityName"></h2>
+          <p id="cityTime" class="city-time"></p>
+        </div>
+        <div class="row">
+          <div class="big" id="temp"></div>
+          <div class="weather-icon" id="weatherIcon"></div>
+          <div class="desc" id="desc"></div>
+        </div>
+
+        <div class="grid">
+          <div><span>Feels like:</span> <strong id="feels"></strong></div>
+          <div><span>Humidity:</span> <strong id="humidity"></strong></div>
+          <div><span>Wind:</span> <strong id="wind"></strong></div>
+          <div><span>Pressure:</span> <strong id="pressure"></strong></div>
+          <div><span>Visibility:</span> <strong id="visibility"></strong></div>
+          <div><span>Cloudiness:</span> <strong id="clouds"></strong></div>
+        </div>
+
+        <div id="weatherComment" class="comment hidden"></div>
+      </section>
+
+      <section id="mapSection" class="card hidden" aria-label="Weather map">
+        <h3>Cloud Cover Map</h3>
+        <div class="map-controls">
+          <button type="button" id="timelapseToggle" class="timelapse-btn">Pause</button>
+          <span id="timelapseLabel" class="timelapse-label"></span>
+        </div>
+        <div id="map" class="map"></div>
+      </section>
+
+      <section id="forecastSection" class="card hidden" aria-label="Weather forecast">
+        <h3>8-Day Forecast</h3>
+        <div id="forecastContainer" class="forecast-grid"></div>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>
