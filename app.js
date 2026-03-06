@@ -343,10 +343,15 @@ function initMap(lat, lon, cityName) {
     attribution: "OpenStreetMap contributors",
   }).addTo(weatherMap);
 
+  const cloudsPane = weatherMap.createPane("cloudsPane");
+  cloudsPane.classList.add("clouds-pane");
+  cloudsPane.style.zIndex = "450";
+
   // Start with current cloud layer immediately, then upgrade to timelapse.
   cloudLayer = L.tileLayer(`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${OPENWEATHER_API_KEY}`, {
     attribution: "OpenWeatherMap",
-    opacity: 0.9,
+    opacity: 1,
+    pane: "cloudsPane",
   }).addTo(weatherMap);
 
   // Add marker at city with popup

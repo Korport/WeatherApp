@@ -340,6 +340,10 @@ input {
   margin-top: 8px;
 }
 
+.clouds-pane img {
+  filter: brightness(0.38) contrast(2.35);
+}
+
 .map-controls {
   display: flex;
   align-items: center;
