@@ -107,7 +107,6 @@ function resetToStartPage() {
   showForecast(false);
   showComment(false);
   showPopular(true);
-  input.focus();
 }
 
 function formatTemp(t) {
