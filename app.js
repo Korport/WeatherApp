@@ -354,8 +354,8 @@ function initMap(lat, lon, cityName) {
     pane: "cloudsPane",
   }).addTo(weatherMap);
 
-  // Add marker at city with popup
-  L.marker([lat, lon]).addTo(weatherMap).bindPopup(`<b>${cityName}</b><br>Cloud cover map centered here`).openPopup();
+  // Add marker at city
+  L.marker([lat, lon]).addTo(weatherMap);
 
   setupCloudTimelapse();
 }
